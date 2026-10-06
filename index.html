@@ -4,26 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Kartiki Pande</title>
-  <meta name="description" content="Kartiki Pande — PhD student in Computational Science (SDSU & UC Irvine) researching privacy-enhancing technologies and browser extension security.">
+  <meta name="description" content="Kartiki Pande, PhD student in Computational Science at SDSU and UC Irvine.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:wght@600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #ffffff;
-      --text: #1f2328;
-      --muted: #5c6670;
-      --accent: #a6192e;          /* change to any color you like */
-      --border: #e5e7eb;
-      --card: #f8f9fa;
+      --bg: #fcfbf9;
+      --text: #1c1e21;
+      --muted: #606770;
+      --accent: #a6192e;
+      --border: #e9e7e2;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --bg: #111418;
-        --text: #e6e8eb;
-        --muted: #9aa4ae;
-        --accent: #f06a7e;
-        --border: #2a2f36;
-        --card: #181c21;
+        --bg: #0d0f12;
+        --text: #e1e4e8;
+        --muted: #8892b0;
+        --accent: #ff7b90;
+        --border: #1f242c;
       }
     }
     * { box-sizing: border-box; }
@@ -33,12 +31,331 @@
       background: var(--bg);
       color: var(--text);
       font-family: Inter, system-ui, sans-serif;
-      line-height: 1.65;
+      line-height: 1.75;
       font-size: 16px;
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a { color: var(--accent); text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: var(--text); text-decoration: underline; }
 
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(252, 251, 249, 0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    @media (prefers-color-scheme: dark) {
+      nav { background: rgba(13, 15, 18, 0.85); }
+    }
+    .nav-inner {
+      max-width: 1080px; margin: 0 auto; padding: 20px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: relative;
+    }
+    .brand { font-weight: 600; color: var(--text); font-size: 17px; letter-spacing: -0.01em; }
+    .brand:hover { text-decoration: none; }
+    .nav-links { display: flex; gap: 28px; }
+    .nav-links a { color: var(--muted); font-size: 14px; font-weight: 500; letter-spacing: 0.02em; }
+    .nav-links a:hover { color: var(--accent); text-decoration: none; }
+    .menu-btn { display: none; background: none; border: 0; font-size: 22px; color: var(--text); cursor: pointer; }
+    .wrap {
+      max-width: 1080px; margin: 0 auto; padding: 100px 24px;
+      display: grid; grid-template-columns: 280px 1fr; gap: 80px;
+    }
+    aside { position: sticky; top: 140px; align-self: start; text-align: left; }
+    aside img {
+      width: 140px; height: 140px; border-radius: 12px; object-fit: cover;
+      filter: grayscale(10%) contrast(95%);
+      margin-bottom: 24px;
+    }
+    aside h1 { font-family: "Source Serif 4", serif; font-weight: 500; font-size: 28px; margin: 0 0 12px; letter-spacing: -0.02em; }
+    aside p { margin: 0 0 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .links { margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+    .links a { font-size: 14px; font-weight: 500; color: var(--text); }
+    .links a:hover { color: var(--accent); text-decoration: none; }
+    section { margin-bottom: 90px; scroll-margin-top: 140px; max-width: 680px; }
+    section p { margin-bottom: 20px; font-size: 16px; color: rgba(28, 30, 33, 0.9); }
+    @media (prefers-color-scheme: dark) {
+      section p { color: rgba(225, 228, 232, 0.9); }
+    }
+    
+    h2 {
+      font-family: "Source Serif 4", serif; font-size: 24px; font-weight: 500;
+      margin: 0 0 28px; padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+      letter-spacing: -0.01em;
+    }
+    ul { padding-left: 20px; margin: 0; }
+    li { margin-bottom: 12px; }
+    .news-list { list-style: none; padding: 0; }
+    .news-list li { display: flex; align-items: flex-start; gap: 24px; margin-bottom: 18px; }
+    .date { 
+      color: var(--muted); 
+      font-size: 13px; 
+      font-weight: 600; 
+      text-transform: uppercase; 
+      letter-spacing: 0.05em; 
+      min-width: 75px; 
+      padding-top: 2px;
+    }
+
+    .item { display: grid; grid-template-columns: 110px 1fr; gap: 16px; margin-bottom: 32px; }
+    .item .yr { color: var(--muted); font-size: 14px; padding-top: 2px; }
+    .item h3 { margin: 0; font-size: 16px; font-weight: 600; }
+    .item .sub { color: var(--muted); font-size: 14px; }
+    .item p { margin: 4px 0 0; font-size: 15px; }
+
+    footer { text-align: left; max-width: 1080px; margin: 0 auto; color: var(--muted); font-size: 13px; padding: 40px 24px 80px; border-top: 1px solid var(--border); }
+
+    @media (max-width: 860px) {
+      .nav-links { gap: 18px; }
+      .wrap { gap: 40px; }
+    }
+    @media (max-width: 760px) {
+      .wrap { grid-template-columns: 1fr; gap: 60px; padding: 60px 24px; }
+      aside { position: static; text-align: center; }
+      aside img { margin: 0 auto 24px; }
+      .links { flex-direction: row; justify-content: center; gap: 16px; }
+      .item { grid-template-columns: 1fr; gap: 4px; }
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg); border-bottom: 1px solid var(--border);
+        box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 16px 24px; border-top: 1px solid var(--border); font-size: 15px; }
+      .news-list li { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#about">Kartiki Pande</a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+    <div class="nav-links" onclick="this.classList.remove('open')">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#awards">Awards</a>
+      <a href="#contact">Contact</a>
+      <a href="Assets/CV.pdf" target="_blank">CV</a>
+    </div>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <aside>
+    <img src="Assets/profile.jpg" alt="Kartiki Pande">
+    <h1>Kartiki Pande</h1>
+    <p>PhD Student, Computational Science</p>
+    <p>San Diego State University &amp;<br>University of California, Irvine</p>
+    <p>PAL Lab, DSP Lab</p>
+    <div class="links">
+      <a href="mailto:kpande3289@sdsu.edu">Email</a>
+      <a href="https://www.linkedin.com/in/kartikihp/" target="_blank">LinkedIn</a>
+      <a href="https://github.com/KartikiP" target="_blank">GitHub</a>
+      <a href="Assets/CV.pdf" target="_blank">CV</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <section id="about">
+      <h2>About me</h2>
+      <p>
+        Hi, I'm Kartiki. I am a researcher working at the intersection of security and
+        privacy, and I also explore the HCI side of these problems.
+      </p>
+      <p>
+        I am a PhD student in the Computational Science Joint Doctoral Program at San Diego State University
+        and the University of California, Irvine, co-advised by Prof. Joann Chen (PAL Lab) and Prof. Zhou Li
+        (DSP Lab).
+      </p>
+      <p>
+        My research investigates privacy, surveillance, and accountability in online and emerging technologies
+        through empirical measurement studies and user-centered evaluations. I use large-scale measurements and
+        survey-based studies to characterize attribution and data practices, quantify privacy and transparency
+        risks, and examine how users' perceptions and expectations shape trust in surveillance technologies and
+        their governance.
+      </p>
+      <p>
+        Before my PhD, I earned an MS in Management Information Systems (specialization in Cybersecurity
+        Management) at SDSU and worked as a Management Summer Intern at the City of San Diego.
+      </p>
+    </section>
+
+    <section id="interests">
+      <h2>Research interests</h2>
+      <p>
+        My research interests lie at the intersection of privacy, surveillance, technology accountability, and
+        human trust in emerging technologies. I am particularly interested in understanding how people perceive
+        and interact with technologies that collect, track, or influence user data, and how transparency and
+        accountability can shape trust in these systems.
+      </p>
+      <p>
+        My work has included studying attribution discrepancies and deceptive practices across browser
+        extensions, as well as investigating residents' perceptions, awareness, and expectations surrounding
+        surveillance technologies and local surveillance policies. More broadly, I am interested in developing
+        and evaluating technologies that are more transparent, privacy-conscious, and accountable to the
+        communities they affect.
+      </p>
+      <p>Some of the areas I work on:</p>
+      <ul>
+        <li>Usable security and security awareness</li>
+        <li>Secure systems</li>
+        <li>Privacy-enhancing technologies, including differential privacy</li>
+        <li>Scams and how they can be prevented systemically</li>
+      </ul>
+    </section>
+
+    <section id="news">
+      <h2>Recent updates</h2>
+      <ul class="news-list">
+        <li><span class="date">2026</span> <span>Received the WiCyS 2026 Scholarship.</span></li>
+        <li><span class="date">Aug 2025</span> <span>Started my PhD in Computational Science at SDSU and UC Irvine.</span></li>
+        <li><span class="date">Jul 2025</span> <span>Our poster Invisible Hijack received Runner-Up for Best Poster at <a href="https://petsymposium.org/2025/" target="_blank">PETS 2025</a>.</span></li>
+        <li><span class="date">Jun 2025</span> <span>Presented a poster at the <a href="https://geecs.eng.uci.edu/geecsants2025-recap/" target="_blank">GEECS Annual Technology Showcase 2025</a>.</span></li>
+        <li><span class="date">May 2025</span> <span>Graduated with my MS in Management Information Systems from SDSU.</span></li>
+      </ul>
+    </section>
+
+    <section id="publications">
+      <h2>Posters and presentations</h2>
+      <div class="item">
+        <div class="yr">2025</div>
+        <div>
+          <h3>Invisible Hijack</h3>
+          <div class="sub">Kartiki Pande, et al.</div>
+          <p>PETS 2025, Poster. Runner-Up for Best Poster.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2025</div>
+        <div>
+          <h3>Poster presentation</h3>
+          <div class="sub">GEECS Annual Technology Showcase, UC Irvine</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="item">
+        <div class="yr">2024</div>
+        <div>
+          <h3>Cookie hijacking in browser extensions</h3>
+          <p>
+            Studied 35 coupon browser extensions across five browsers under different privacy settings and
+            surveyed over 300 users about their awareness of these risks. 77% of the extensions we analyzed
+            engaged in cookie hijacking, potentially affecting over 43 million users.
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2024</div>
+        <div>
+          <h3>SDSU Cyber Clinic</h3>
+          <p>
+            Volunteered as a security consultant and assessed a local organization's security posture using
+            the NIST Cybersecurity Framework 2.0.
+          </p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2025</div>
+        <div>
+          <h3><a href="https://github.com/CEED/libCEED/issues/1906" target="_blank">libCEED volume computation example</a></h3>
+          <p>
+            Implemented an example for the libCEED library that computes volume on curved meshes using
+            finite element methods in Julia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <div class="item">
+        <div class="yr">2024 - present</div>
+        <div>
+          <h3>Researcher</h3>
+          <div class="sub">PAL Lab, San Diego State University</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2024 - 2025</div>
+        <div>
+          <h3>Management Intern, Parks and Recreation</h3>
+          <div class="sub">City of San Diego</div>
+          <p>Worked on Salesforce workflows, compliance reporting, and process documentation.</p>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2022 - 2023</div>
+        <div>
+          <h3>Application Development Associate</h3>
+          <div class="sub">Accenture</div>
+          <p>Worked on GIS data integration and interactive maps on ESRI platforms.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="item">
+        <div class="yr">2025 - present</div>
+        <div>
+          <h3>PhD in Computational Science</h3>
+          <div class="sub">San Diego State University and University of California, Irvine</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2023 - 2025</div>
+        <div>
+          <h3>MS in Management Information Systems</h3>
+          <div class="sub">San Diego State University</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="yr">2018 - 2022</div>
+        <div>
+          <h3>BE in Instrumentation Engineering</h3>
+          <div class="sub">Vivekanand Education Society's Institute of Technology, Mumbai</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="awards">
+      <h2>Awards and service</h2>
+      <ul>
+        <li>WiCyS Scholarship, 2026</li>
+        <li>Runner-Up for Best Poster, PETS 2025</li>
+        <li>PETS Travel Award, 2025</li>
+        <li>Founder, WiCyS SDSU Chapter</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        Work: <a href="mailto:kpande3289@sdsu.edu">kpande3289@sdsu.edu</a><br>
+        Personal: <a href="mailto:pandekartiki@gmail.com">pandekartiki@gmail.com</a>
+      </p>
+    </section>
+
+  </main>
+</div>
+
+<footer>© 2026 Kartiki Pande</footer>
+
+</body>
+</html>
     /* ---------- Top navigation ---------- */
     nav {
       position: sticky; top: 0; z-index: 10;
